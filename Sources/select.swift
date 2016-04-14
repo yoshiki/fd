@@ -14,7 +14,7 @@ func filter<T : FileDescriptor>(sockets: [T]?, _ set: inout fd_set) -> [T] {
 }
 
 
-public func select<R : FileDescriptor, W : WritableFileDescriptor, E : FileDescriptor>(reads reads: [R] = [], writes: [W] = [], errors: [E] = [], timeout: timeval? = nil) throws -> (reads: [R], writes: [W], errors: [E]) {
+public func fdselect<R : FileDescriptor, W : WritableFileDescriptor, E : FileDescriptor>(reads reads: [R] = [], writes: [W] = [], errors: [E] = [], timeout: timeval? = nil) throws -> (reads: [R], writes: [W], errors: [E]) {
   var readFDs = fd_set()
   fdZero(&readFDs)
   reads.forEach { fdSet($0.fileNumber, &readFDs) }
