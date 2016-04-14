@@ -20,7 +20,7 @@ extension ReadableFileDescriptor {
 
     if size > 0 {
       let readSize = min(size, bufferSize)
-      var bytes = [Byte](count: readSize, repeatedValue: 0)
+        var bytes = [Byte](repeating: 0, count: readSize)
       memcpy(&bytes, buffer, readSize)
       return bytes
     }

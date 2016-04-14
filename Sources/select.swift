@@ -7,7 +7,7 @@ private let system_select = Darwin.select
 #endif
 
 
-func filter<T : FileDescriptor>(sockets: [T]?, inout _ set: fd_set) -> [T] {
+func filter<T : FileDescriptor>(sockets: [T]?, _ set: inout fd_set) -> [T] {
   return sockets?.filter {
     fdIsSet($0.fileNumber, &set)
   } ?? []
